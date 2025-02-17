@@ -19,8 +19,13 @@ An LLM (OpenAI gpt-4o-mini) based research paper summarizer. Local application, 
 2. Analysis is subject to OpenAI response times
 3. The pdfs summaries and analyses are stored locally
 4. By default, the PDFs are in the `pdfs/` folder and summaries in the `exports/` folder as csvs
-5. Ollama interface is available in the code, but there are issues with some models, so I have not integrated it with the UI
+5. References are removed from the paper using a very basic search to avoid overflowing LLM context window
+6. Ollama interface is available in the code, but there are issues with some models, so I have not integrated it with the UI
 
 
+# Screenshots
+![Main Page](screenshots/mainpage.png "Main Page")
+
+![Summary and Insights](screenshots/summaries.png "Summary and Insights")
 
 -- utkd

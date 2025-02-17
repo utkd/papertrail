@@ -1,14 +1,16 @@
+import os
 import streamlit as st
 from llm_service import OpenAILLM, OllamaLLM
 from pdf_summarizer import PdfSummarizer
 from arxiv_reader import ArxivReader
 from exporter import Exporter
 
-reader = ArxivReader()
+local_pdf_store = "pdfs"
+reader = ArxivReader(local_pdf_store)
 exporter = Exporter("exports/")
 
-st.set_page_config(page_title='🦜🔗 Research Assistant', layout="wide")
-st.title('🦜🔗 Research Assistant')
+st.set_page_config(page_title='PaperTrail 🔗 Research Assistant', layout="wide")
+st.title('PaperTrail')
 
 openai_api_key = st.text_input('OpenAI API Key', type = 'password')
 
@@ -29,7 +31,7 @@ with tab1:
                     filename = uploaded_file.name
                     with st.spinner('Processing...'):
                         bytes_data = uploaded_file.getvalue()
-                        output_path = "pdfs/"+filename
+                        output_path = os.path.join(local_pdf_store, filename)
                         with open(output_path, 'wb') as f: 
                             f.write(bytes_data)
                         

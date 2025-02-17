@@ -3,7 +3,10 @@ import time
 import arxiv
 
 class ArxivReader(object):
-    def __init__(self):
+    def __init__(self, local_basepath):
+        if not os.path.exists(local_basepath):
+            os.mkdir(local_basepath)
+        self._local_basepath = local_basepath
         self._client = arxiv.Client()
 
     def _extract_paper_id_from_string(self, input:str) -> str:
@@ -56,7 +59,7 @@ class ArxivReader(object):
             if paper_result is None:
                 paper_result = self._get_paper_by_title(paper)
             if paper_result is not None:
-                saved_loc = self._download_paper(paper_result, output_path=base_output_path)
+                saved_loc = self._download_paper(paper_result, output_path=self._local_basepath)
                 saved_locations.append(saved_loc)
             time.sleep(3.0)
         return saved_locations
