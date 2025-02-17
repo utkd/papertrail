@@ -1,4 +1,4 @@
-# Paper Trail
+# PaperTrail
 
 An LLM (OpenAI gpt-4o-mini) based research paper summarizer. Local application, saves data in local file system.
 
